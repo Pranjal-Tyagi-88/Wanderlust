@@ -4,6 +4,7 @@ const app = express();
 if (process.env.NODE_ENV != "production")
     require('dotenv').config();
 
+const PORT = process.env.PORT || 3000;
 
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
@@ -56,6 +57,7 @@ const passport = require("passport");
 const localStrategy = require("passport-local");
 
 const User = require("./models/users.js");
+const { prototype } = require("module");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -132,6 +134,6 @@ app.use((err, req, res, next) => {
 });
 
 // ------------------ SERVER ------------------
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("Listening on port 3000");
 });
